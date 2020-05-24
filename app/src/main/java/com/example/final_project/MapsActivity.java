@@ -11,6 +11,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Locale;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -43,5 +45,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+        ////Add Marker in long click
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+
+            public void onMapLongClick(LatLng latLng) {
+                String snippet = String.format(Locale.getDefault(),
+                        "Lat: %1$.5f, Long: %2$.5f",
+                        latLng.latitude,
+                        latLng.longitude);
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title("title")
+                        .snippet(snippet));
+            }
+
+        });
+        /////Add_marker end
     }
+    ///////end...
 }
