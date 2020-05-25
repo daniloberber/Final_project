@@ -2,9 +2,11 @@ package com.example.final_project;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -93,11 +95,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         /////Add_marker end
 
+
+
     }
-    //marker dialog
+
+
+            //marker dialog
     public void openDialog() {
         MarkerDialog markerDialog = new MarkerDialog();
         markerDialog.show(getSupportFragmentManager(), "marker dialog");
     }
+
+    //info dialog
+    public void openInfoDialog() {
+        InfoDialog infoDialog = new InfoDialog();
+        infoDialog.show(getSupportFragmentManager(), "info dialog");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.info:
+                openInfoDialog();
+
+
+        }
+                return super.onOptionsItemSelected(item);
+        }
     ///////end...
 }
