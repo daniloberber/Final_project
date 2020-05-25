@@ -3,6 +3,8 @@ package com.example.final_project;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +21,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     public String title;
     public String description;
+    private Object Menu;
 
 
     @Override
@@ -29,6 +32,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+        @Override
+        public boolean onCreateOptionsMenu(android.view.Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.main_menu, menu);
+            return true;
+        
     }
 
 
