@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Final_project</string>
     <string name="title_activity_maps">Map</string>
+    <string name="info">Info</string>
+    <string name="this_app_was_created_for_the_final_assignment_of_mobile_development_class_in_bts_student_danilo_berber">This app was created for the final assignment of mobile development class in BTS. Student: Danilo Berber:</string>
+    <string name="about">About:</string>
 
 </resources>
