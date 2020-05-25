@@ -9,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Locale;
@@ -16,6 +17,9 @@ import java.util.Locale;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public String title;
+    public String description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +51,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
 
+
+        //On info click
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                openDialog();
+
+            }
+        });
         ////Add Marker in long click
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
 
             public void onMapLongClick(LatLng latLng) {
+                
+
                 String snippet = String.format(Locale.getDefault(),
                         "Lat: %1$.5f, Long: %2$.5f",
                         latLng.latitude,
                         latLng.longitude);
 
+
+
                 mMap.addMarker(new MarkerOptions()
                         .position(latLng)
                         .title("title")
-                        .snippet(snippet));
+                        .snippet("Description"));
             }
 
         });
         /////Add_marker end
+
+    }
+    //marker dialog
+    public void openDialog() {
+        MarkerDialog markerDialog = new MarkerDialog();
+        markerDialog.show(getSupportFragmentManager(), "marker dialog");
     }
     ///////end...
 }
